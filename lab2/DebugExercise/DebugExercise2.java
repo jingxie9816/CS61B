@@ -7,19 +7,25 @@ package DebugExercise;
 public class DebugExercise2 {
     /** Returns the max of a and b. Do not step into this function. */
     public static int max(int a, int b) {
-        int w = (b - a) >> 31;
+        //int w = (b - a) >> 31;
         /* If you're stepping into this function, click the
            step out button because you're not going to learn anything. */
-        int z = ~(b - a) >> 31;
+        //int z = ~(b - a) >> 31;
 
-        int max = b & w | a & z;
+        //int max = b & w | a & z;
+        int max;
+        if (a>= b) {
+            max = a;
+        } else {
+            max = b;
+        }
         return max;
     }
 
 
     /** Returns the sum of a and b. Do not step into this function. */
     public static int add(int a, int b) {
-        int x = a, y = b;
+         int x = a, y = b;
         /* If you're stepping into this function, click the
            step out button because you're not going to learn anything. */
         int xor, and, temp;
@@ -32,6 +38,8 @@ public class DebugExercise2 {
             and &= xor;
             xor = temp;
         }
+        //int sum = a + b;
+        //return sum;
         return xor;
     }
 
@@ -83,3 +91,4 @@ public class DebugExercise2 {
         System.out.println(sumOfElementwiseMaxes);
     }
 }
+// 3+11+2+(-1) = 15
