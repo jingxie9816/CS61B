@@ -34,7 +34,7 @@ public class TestBuggyAList {
         AListNoResizing<Integer> L = new AListNoResizing<>();
         BuggyAList<Integer> BL = new BuggyAList<>();
 
-        int N = 5000;
+        int N = 50000;
         for (int i = 0; i < N; i += 1) {
             int operationNumber = StdRandom.uniform(0, 4);
             if (operationNumber == 0) {
@@ -52,7 +52,7 @@ public class TestBuggyAList {
                 System.out.println("size: " + size);
             } else if (operationNumber == 2){
                 // getLast
-                if (L.size()==0){
+                if (L.size()==0 || BL.size() == 0){
                     continue;
                 } else {
                     int lastItem = L.getLast();
@@ -62,7 +62,7 @@ public class TestBuggyAList {
                 }
             } else if (operationNumber == 3) {
                 // removeLast
-                if (L.size() == 0) {
+                if (L.size() == 0 || BL.size() == 0) {
                     continue;
                 } else {
                     int lastItem = L.removeLast();
