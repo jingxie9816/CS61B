@@ -81,7 +81,15 @@ public class IntListExercises {
             }
 
             return squarePrimes(lst.rest) || currElemIsPrime;
-
+            /* swap the position of recursive call and currElemIsPrime, since "OR" evaluates from left to right, it will continue until it got a True value or
+            get the end of the statement, (short-cut method), so the original statement return currElemIsPrime || squarePrimes(lst.rest); the call will end once
+            the first operand is true, i.e., it finds the first prime element. if the first operand is false, it will continue to evaluate the second operand, i.e,
+            recursive call, until the first prime value found (currElemIsPrime=true); After swapping the position, the recursive call can be evaluated until reach
+            the base case, and the base case return false. so it will go to evaluate the second operand currElemIsPrime. The return value of current call will be
+            the evaluation of the both side operands, once a true occur in any recursion, the OR operand will evaluate to true as a whole, and because it's recursion,
+            the result of the OR operand will be the return value of the upper level recursion's  squarePrimes(lst.rest) result. so once a true occur, the return value will always
+            be evaluated to true.
+             */
 
             // return currElemIsPrime || squarePrimes(lst.rest);
     }
