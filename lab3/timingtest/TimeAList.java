@@ -30,9 +30,9 @@ public class TimeAList {
         Ns.addLast(4000);
         Ns.addLast(8000);
         Ns.addLast(16000);
-        Ns.addLast(32000);
-        Ns.addLast(64000);
-        Ns.addLast(128000);
+        Ns.addLast(320000);
+        Ns.addLast(640000);
+        Ns.addLast(1280000);
         AList times = new AList();
         for (int j = 0; j < Ns.size(); j = j + 1) {
             Stopwatch sw = new Stopwatch();
