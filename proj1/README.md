@@ -13,7 +13,7 @@ It has public methods listed below:
 
 **addFirst(T item)**  
 **addLast(T item)**  
-**boolean isEmpty()**  
+**isEmpty()**  
 **size()   
 printDeque()   
 removeFirst()  
