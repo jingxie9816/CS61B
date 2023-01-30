@@ -33,14 +33,30 @@ public class LinkedListDeque<T> {
     /** addFirst: Adds an item of type T to the front of the deque,
      * assuming that item is never null.*/
     public void addFirst(T item) {
-        sentinel.next = new StuffNode(item, sentinel.next, sentinel);
-        size = size + 1;
+        if (size == 0){
+            StuffNode s = new StuffNode(item, sentinel, sentinel);
+            sentinel.next = s;
+            sentinel.prev = s;
+            size = size + 1;
+        } else {
+            sentinel.next = new StuffNode(item, sentinel.next, sentinel);
+            size = size + 1;
+        }
     }
     /** addLast: Adds an item of type T to the back of the deque,
      * assuming that item is never null.*/
     public void addLast(T item){
-        sentinel.prev = new StuffNode(item, sentinel, sentinel.prev);
-        size = size + 1;
+        if (size == 0) {
+            StuffNode s = new StuffNode(item, sentinel, sentinel);
+            sentinel.next = s;
+            sentinel.prev = s;
+            size = size + 1;
+        } else {
+            StuffNode s = new StuffNode(item, sentinel, sentinel.prev);
+            sentinel.prev.next = s;
+            sentinel.prev = s;
+            size = size + 1;
+        }
     }
 
     /** isEmpty: Returns true if deque is empty, false otherwise.*/
@@ -59,7 +75,7 @@ public class LinkedListDeque<T> {
      * Once all the items have been printed, print out a new line.*/
     public void printDeque() {
         StuffNode p = sentinel;
-        while(p.next != null){
+        while(p.next != sentinel){
             System.out.print(p.next.item + " ");
             p = p.next;
         }
@@ -69,19 +85,24 @@ public class LinkedListDeque<T> {
     /** removeFirst: Removes and returns the item at the front of the deque.
     If no such item exists, returns null.*/
     public T removeFirst(){
-        T first = sentinel.next.item;
-        sentinel.next = sentinel.next.next;
-        size = size - 1;
-        return first;
+        if(size > 0) {
+            T first = sentinel.next.item;
+            sentinel.next = sentinel.next.next;
+            size = size - 1;
+            return first;
+        } else {return null;}
+
     }
 
     /** removeLast: Removes and returns the item at the back of the deque.
      If no such item exists, returns null.*/
     public T removeLast() {
-        T last = sentinel.prev.item;
-        sentinel.prev = sentinel.prev.prev;
-        size = size - 1;
-        return last;
+        if (size > 0) {
+            T last = sentinel.prev.item;
+            sentinel.prev = sentinel.prev.prev;
+            size = size - 1;
+            return last;
+        } else {return null;}
     }
 
     /** get(int index): Gets the item at the given index, where 0 is the front,
@@ -98,6 +119,16 @@ public class LinkedListDeque<T> {
         }
         return null;
     }
+    /** get uses recursion */
+    public T getRecursive(int index){
+        if (index == 0){
+            return sentinel.next.item;
+        } else {
+            T t = this.removeFirst();
+            return (T) this.getRecursive(index-1);
+        }
+    }
+
 
     /** Iterator: The Deque objects we’ll make are iterable (i.e. Iterable<T>)
      * so we must provide this method to return an iterator.*/
@@ -109,9 +140,21 @@ public class LinkedListDeque<T> {
      * o is considered equal if it is a Deque and if it contains the same contents
      * (as goverened by the generic T’s equals method) in the same order.*/
     public boolean equals(Object o){
-        if (o instanceof LinkedListDeque){
-
+        if (!(o instanceof LinkedListDeque)){
+            return false;
+        } else if(((LinkedListDeque<?>) o).size != this.size) {
+            return false;
+        } else {
+            StuffNode p = this.sentinel;
+            StuffNode op = (StuffNode) ((LinkedListDeque<?>) o).sentinel;
+            for (int i=0; i< this.size; i+=1){
+                if (op.next.item.equals(p.next.item)){
+                    p = p.next;
+                    op = op.next;
+                } else {return false;}
+            } return true;
         }
     }
+
 
 }
