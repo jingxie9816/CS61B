@@ -1,7 +1,8 @@
 package gh2;
 
 // TODO: uncomment the following import once you're ready to start this portion
-// import deque.Deque;
+import deque.ArrayDeque;
+import deque.Deque;
 // TODO: maybe more imports
 
 //Note: This file will not compile until you complete the Deque implementations
@@ -11,10 +12,11 @@ public class GuitarString {
      * other topics in lecture on Friday. */
     private static final int SR = 44100;      // Sampling Rate
     private static final double DECAY = .996; // energy decay factor
+    //private int index = 0;
 
     /* Buffer for storing sound data. */
     // TODO: uncomment the following line once you're ready to start this portion
-    // private Deque<Double> buffer;
+    private Deque<Double> buffer;
 
     /* Create a guitar string of the given frequency.  */
     public GuitarString(double frequency) {
@@ -22,6 +24,10 @@ public class GuitarString {
         //       cast the result of this division operation into an int. For
         //       better accuracy, use the Math.round() function before casting.
         //       Your should initially fill your buffer array with zeros.
+        buffer = new ArrayDeque<Double>();
+        for (int i = 0; i < (int) Math.round(SR/frequency); i++){
+            buffer.addLast(0.0);
+        }
     }
 
 
@@ -35,6 +41,11 @@ public class GuitarString {
         //       other. This does not mean that you need to check that the numbers
         //       are different from each other. It means you should repeatedly call
         //       Math.random() - 0.5 to generate new random numbers for each array index.
+        for (int i = 0; (int) i < buffer.size(); i++){
+            double r = Math.random() - 0.5;
+            buffer.removeFirst();
+            buffer.addLast(r);
+        }
     }
 
     /* Advance the simulation one time step by performing one iteration of
@@ -44,12 +55,19 @@ public class GuitarString {
         // TODO: Dequeue the front sample and enqueue a new sample that is
         //       the average of the two multiplied by the DECAY factor.
         //       **Do not call StdAudio.play().**
+        double removeDouble = buffer.removeFirst();
+        double removeTemp = buffer.removeFirst();
+        double newDouble = (removeDouble+ removeTemp)/2.0 * DECAY;
+        buffer.addLast(newDouble);
+        buffer.addFirst(removeTemp);
     }
 
     /* Return the double at the front of the buffer. */
     public double sample() {
         // TODO: Return the correct thing.
-        return 0;
+        double front = buffer.removeFirst();
+        buffer.addFirst(front);
+        return front;
     }
 }
     // TODO: Remove all comments that say TODO when you're done.

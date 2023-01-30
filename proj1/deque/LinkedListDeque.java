@@ -1,6 +1,6 @@
 package deque;
 
-public class LinkedListDeque<T> {
+public class LinkedListDeque<T> implements Deque<T> {
     private class StuffNode {
         public T item;
         public StuffNode next;
@@ -59,12 +59,6 @@ public class LinkedListDeque<T> {
         }
     }
 
-    /** isEmpty: Returns true if deque is empty, false otherwise.*/
-    public boolean isEmpty(){
-        if (size == 0) {
-            return true;
-        } return false;
-    }
 
     /** size: return the number of items in the deque*/
     public int size() {
@@ -121,14 +115,19 @@ public class LinkedListDeque<T> {
     }
     /** get uses recursion */
     public T getRecursive(int index){
+        if (index < 0 || index > size()) {
+            return null;
+        }
+        return getRecursiveHelper(index, sentinel.next);
+        }
+
+    private T getRecursiveHelper(int index, StuffNode node){
         if (index == 0){
-            return sentinel.next.item;
-        } else {
-            T t = this.removeFirst();
-            return (T) this.getRecursive(index-1);
+            return node.item;
+        } else{
+            return getRecursiveHelper(index-1, node.next);
         }
     }
-
 
     /** Iterator: The Deque objects we’ll make are iterable (i.e. Iterable<T>)
      * so we must provide this method to return an iterator.*/

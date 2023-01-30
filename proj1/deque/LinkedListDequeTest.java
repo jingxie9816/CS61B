@@ -155,8 +155,6 @@ public class LinkedListDequeTest {
         for (int i = 0; i < 100; i++){
             lld1.addLast(i);
         }
-        Integer result = lld1.getRecursive(0);
-        Integer result2 = lld1.getRecursive(50);
         assertEquals(0, (int) lld1.getRecursive(0));
         assertEquals(50, (int) lld1.getRecursive(50));
         assertEquals(99, (int) lld1.getRecursive(99));
