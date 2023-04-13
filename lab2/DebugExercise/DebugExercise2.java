@@ -7,6 +7,7 @@ package DebugExercise;
 public class DebugExercise2 {
     /** Returns the max of a and b. Do not step into this function. */
     public static int max(int a, int b) {
+
         //int w = (b - a) >> 31;
         /* If you're stepping into this function, click the
            step out button because you're not going to learn anything. */
@@ -19,6 +20,7 @@ public class DebugExercise2 {
         } else {
             max = b;
         }
+
         return max;
     }
 
@@ -40,6 +42,7 @@ public class DebugExercise2 {
         }
         //int sum = a + b;
         //return sum;
+
         return xor;
     }
 
@@ -92,3 +95,4 @@ public class DebugExercise2 {
     }
 }
 // 3+11+2+(-1) = 15
+

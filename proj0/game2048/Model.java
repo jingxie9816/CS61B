@@ -30,6 +30,7 @@ public class Model extends Observable {
      * to board.tile(c, r).  Be careful! It works like (x, y) coordinates.
      */
 
+
     /**
      * Largest piece value.
      */
@@ -45,6 +46,7 @@ public class Model extends Observable {
         gameOver = false;
     }
 
+
     /**
      * A new 2048 game where RAWVALUES contain the values of the tiles
      * (0 if null). VALUES is indexed by (row, col) with (0, 0) corresponding
@@ -58,6 +60,7 @@ public class Model extends Observable {
         this.gameOver = gameOver;
     }
 
+
     /**
      * Return the current Tile at (COL, ROW), where 0 <= ROW < size(),
      * 0 <= COL < size(). Returns null if there is no tile there.
@@ -67,6 +70,7 @@ public class Model extends Observable {
         return board.tile(col, row);
     }
 
+
     /**
      * Return the number of squares on one side of the board.
      * Used for testing. Should be deprecated and removed.
@@ -74,6 +78,7 @@ public class Model extends Observable {
     public int size() {
         return board.size();
     }
+
 
     /**
      * Return true iff the game is over (there are no moves, or
@@ -87,23 +92,29 @@ public class Model extends Observable {
         return gameOver;
     }
 
+
     /**
      * Return the current score.
      */
+
     public int score() {
         return score;
     }
 
+
     /**
      * Return the current maximum game score (updated at end of game).
      */
+
     public int maxScore() {
         return maxScore;
     }
 
+
     /**
      * Clear the board to empty and reset the score.
      */
+
     public void clear() {
         score = 0;
         gameOver = false;
@@ -111,15 +122,18 @@ public class Model extends Observable {
         setChanged();
     }
 
+
     /**
      * Add TILE to the board. There must be no Tile currently at the
      * same position.
      */
+
     public void addTile(Tile tile) {
         board.addTile(tile);
         checkGameOver();
         setChanged();
     }
+
 
     /**
      * Tilt the board toward SIDE. Return true iff this changes the board.
@@ -134,6 +148,7 @@ public class Model extends Observable {
      * value, then the leading two tiles in the direction of motion merge,
      * and the trailing tile does not.
      */
+
     public boolean tilt(Side side) {
         boolean changed;
         changed = false;
@@ -141,6 +156,7 @@ public class Model extends Observable {
         // TODO: Modify this.board (and perhaps this.score) to account
         // for the tilt to the Side SIDE. If the board changed, set the
         // changed local variable to true.
+
         int len = board.size();
         board.setViewingPerspective(side);
         for (int col = 0; col < len; col += 1) {
@@ -150,10 +166,12 @@ public class Model extends Observable {
         }
 
 
+
         checkGameOver();
         if (changed) {
             setChanged();
         }
+
         board.setViewingPerspective(Side.NORTH);
         return changed;
     }
@@ -281,6 +299,7 @@ public class Model extends Observable {
      * */
     public static boolean emptySpaceExists(Board b) {
         // TODO: Fill in this function.
+
         int len = b.size();
         boolean flag = false;
         for (int col = 0; col < len; col += 1) {
@@ -291,6 +310,7 @@ public class Model extends Observable {
             }
         }
         return flag;
+
     }
 
     /**
@@ -300,6 +320,7 @@ public class Model extends Observable {
      */
     public static boolean maxTileExists(Board b) {
         // TODO: Fill in this function.
+
         int len = b.size();
         boolean flag = false;
         for (int col = 0; col < len; col += 1) {
@@ -317,6 +338,7 @@ public class Model extends Observable {
             }
         }
         return flag;
+
     }
 
     /**
@@ -327,6 +349,7 @@ public class Model extends Observable {
      */
     public static boolean atLeastOneMoveExists(Board b) {
         // TODO: Fill in this function.
+
 
         if (emptySpaceExists(b) == true) {
             return true;
@@ -353,6 +376,7 @@ public class Model extends Observable {
                 pred = curr;
             }
         }
+
         return false;
     }
 

@@ -2,14 +2,13 @@ package randomizedtest;
 
 import edu.princeton.cs.algs4.StdRandom;
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
-
 /**
  * Created by hug.
  */
 public class TestBuggyAList {
   // YOUR TESTS HERE
+<<<<<<< HEAD
     @Test
     public void testThreeAddThreeRemove() {
         AListNoResizing<Integer> naiveAList = new AListNoResizing<>();

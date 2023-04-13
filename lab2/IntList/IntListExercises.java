@@ -29,6 +29,7 @@ public class IntListExercises {
            // int currentMax = max(p);   //separate this two methods for debug, easier to identify which call yield wrong result
            // boolean firstEqualsLast = firstDigitEqualsLastDigit(currentMax);
            // if (firstEqualsLast) {
+
             if (firstDigitEqualsLastDigit(max(p))) {
                 p.first = 0;
             }

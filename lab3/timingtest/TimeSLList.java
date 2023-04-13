@@ -24,6 +24,7 @@ public class TimeSLList {
 
     public static void timeGetLast() {
         // TODO: YOUR CODE HERE
+
         AList<Integer> Ns = new AList<>();
         Ns.addLast(1000);
         Ns.addLast(2000);
@@ -59,4 +60,5 @@ public class TimeSLList {
         }
         return L;
     }
+
 }
