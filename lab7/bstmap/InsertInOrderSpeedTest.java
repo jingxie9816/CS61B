@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.TreeMap;
 import java.io.IOException;
 import java.util.Scanner;
-
 import edu.princeton.cs.algs4.Stopwatch;
 
 /**
