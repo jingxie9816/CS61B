@@ -19,12 +19,10 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     protected class Node {
         K key;
         V value;
-        Node next;
 
         Node(K k, V v) {
             key = k;
             value = v;
-            next = null;
         }
     }
 
